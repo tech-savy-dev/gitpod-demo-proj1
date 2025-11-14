@@ -1,5 +1,5 @@
 # Use Gitpod's Python workspace image (includes Python, Docker, and common tools)
-FROM gitpod/workspace-python
+FROM gitpod/workspace-base
 
 # Set working directory in container
 WORKDIR /app
