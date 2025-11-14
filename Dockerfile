@@ -1,14 +1,17 @@
-# Use Gitpod's Python workspace image (includes Python, Docker, and common tools)
+# Use Gitpod's base workspace image
 FROM gitpod/workspace-base
 
-# Set working directory in container
+# Set working directory
 WORKDIR /app
 
 # Switch to root for installation
 USER root
 
-# Install additional dependencies if needed
+# Install Python and pip
 RUN apt-get update && apt-get install -y \
+    python3 \
+    python3-pip \
+    python3-venv \
     iptables \
     && rm -rf /var/lib/apt/lists/*
 
@@ -28,13 +31,13 @@ RUN mkdir -p /var/log
 
 # Set metadata
 LABEL maintainer="project1"
-LABEL description="Simple Python Calculator Application with Docker-in-Docker using Gitpod Python workspace"
+LABEL description="Simple Python Calculator Application"
 
-# Stay as root (required for Docker daemon)
-USER root
+# Switch back to gitpod user
+USER gitpod
 
-# Set entrypoint to start Docker daemon first
+# Set entrypoint
 ENTRYPOINT ["/entrypoint.sh"]
 
-# Default command to run the application
+# Default command
 CMD ["python3", "app.py"]
