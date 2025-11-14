@@ -27,7 +27,16 @@ fi
 # Show Docker version
 echo "📦 Docker version:"
 docker --version
+docker-compose --version 2>/dev/null || echo "docker-compose not installed"
 
-# Execute the main command
-echo "🚀 Starting application..."
-exec "$@"
+echo "✅ Container ready!"
+
+# If a command is provided, execute it
+if [ $# -gt 0 ]; then
+    echo "🚀 Executing: $@"
+    exec "$@"
+else
+    # No command provided, keep container running
+    echo "🔄 No command provided, keeping container alive..."
+    tail -f /dev/null
+fi
