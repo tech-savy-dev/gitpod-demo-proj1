@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  python-calculator:
+    build: .
+    image: python-calculator:v1.0
+    container_name: python-calculator-dind
+    # Privileged mode is required for Docker daemon to run inside container
+    privileged: true
+    volumes:
+      # Mount current directory for development
+      - .:/app
+    # Optional: expose Docker daemon port for external access
+    # ports:
+    #   - "2375:2375"
+    command: python3 app.py
