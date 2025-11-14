@@ -1,18 +1,5 @@
 {
   "name": "Python Project 1",
-  "build": {
-    "dockerfile": "../Dockerfile",
-    "context": ".."
-  },
-  "features": {
-    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
-  },
-  "customizations": {
-    "vscode": {
-      "extensions": [
-        "ms-python.python"
-      ]
-    }
-  },
-  "remoteUser": "gitpod"
+  "image": "gitpod/workspace-full",
+  "postCreateCommand": "pip3 install -r requirements.txt"
 }
